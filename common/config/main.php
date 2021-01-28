@@ -5,9 +5,21 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'language' => 'id-ID',
+    'sourceLanguage' => 'id-ID',
+    'timezone' => 'Asia/Jakarta',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'authManager' => [
+            'class' => \yii\rbac\DbManager::class
+        ],
+        'formatter' => [
+            'locale' => 'id_ID',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => '.',
+
         ],
 //        'assetManager' => [
 //            'bundles' => [
