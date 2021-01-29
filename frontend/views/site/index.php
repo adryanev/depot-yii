@@ -9,7 +9,7 @@ $this->title = 'Selamat Datang';
             <div class="row home-row">
                 <div class="col-12 d-block d-md-none">
                     <a href="#">
-                        <img alt="mobile hero" class="mobile-hero rounded" src="img/galon-pusing.png" />
+                        <img alt="mobile hero" class="mobile-hero rounded" src="<?=Yii::getAlias('@web/'.'images/galon-pusing.png')?>" />
                     </a>
                 </div>
 
@@ -19,12 +19,12 @@ $this->title = 'Selamat Datang';
                         <p class="white mb-5">
                            Depot adalah aplikasi antar jemput galon yang memanfaatkan teknologi terkini.
                         </p>
-                        <a class="btn btn-outline-semi-light btn-xl" href="LandingPage.Auth.Register.html">Daftar Sekarang!</a>
+                        <?=\yii\bootstrap4\Html::a('Daftar Sekarang!',['site/signup'],['class'=>'btn btn-outline-semi-light btn-xl'])?>
                     </div>
                 </div>
                 <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
                     <a href="#">
-                        <img class="rounded" alt="hero" src="img/galon-pusing.png" />
+                        <img class="rounded" alt="hero" src="<?=Yii::getAlias('@web/'.'images/galon-pusing.png')?>" />
                     </a>
                 </div>
             </div>
@@ -171,13 +171,13 @@ $this->title = 'Selamat Datang';
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">
                     <div class="background-item-1"></div>
-                    <img alt="feature image" class="feature-image-right feature-image-charts position-relative" src="img/landing-page/feature.png" />
+                    <img alt="feature image" class="feature-image-right feature-image-charts position-relative" src="images/landing-page/feature.png" />
                 </div>
             </div>
 
             <div class="row feature-row">
                 <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
-                    <img alt="feature image" class="feature-image-left feature-image-charts" src="img/landing-page/feature-2.png" />
+                    <img alt="feature image" class="feature-image-left feature-image-charts" src="images/landing-page/feature-2.png" />
                 </div>
 
                 <div class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2">
@@ -234,7 +234,7 @@ $this->title = 'Selamat Datang';
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 ">
-                    <img alt="feature image" class="feature-image-right feature-image-charts" src="img/landing-page/feature-3.png" />
+                    <img alt="feature image" class="feature-image-right feature-image-charts" src="images/landing-page/feature-3.png" />
                 </div>
             </div>
         </div>
@@ -259,7 +259,7 @@ $this->title = 'Selamat Datang';
                                 <div class="card-body text-center pt-5 pb-5">
                                     <div>
                                         <img alt="review profile" class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail mx-auto"
-                                             src="img/profile-pic-l-7.jpg" />
+                                             src="images/profile-pic-l-7.jpg" />
                                         <h5 class="mb-0 font-weight-semibold color-theme-1 mb-3">
                                             codebars
                                         </h5>
@@ -284,7 +284,7 @@ $this->title = 'Selamat Datang';
                                 <div class="card-body text-center pt-5 pb-5">
                                     <div>
                                         <img alt="review profile" class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail mx-auto"
-                                             src="img/profile-pic-l-11.jpg" />
+                                             src="images/profile-pic-l-11.jpg" />
                                         <h5 class="mb-0 font-weight-semibold color-theme-1 mb-3">
                                             helvetica
                                         </h5>
@@ -309,7 +309,7 @@ $this->title = 'Selamat Datang';
                                 <div class="card-body text-center pt-5 pb-5">
                                     <div>
                                         <img alt="review profile" class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail mx-auto"
-                                             src="img/profile-pic-l-2.jpg" />
+                                             src="images/profile-pic-l-2.jpg" />
                                         <h5 class="mb-0 font-weight-semibold color-theme-1 mb-3">
                                             logorrhea
                                         </h5>
@@ -335,7 +335,7 @@ $this->title = 'Selamat Datang';
                                 <div class="card-body text-center pt-5 pb-5">
                                     <div>
                                         <img alt="review profile" class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail mx-auto"
-                                             src="img/profile-pic-l-8.jpg" />
+                                             src="images/profile-pic-l-8.jpg" />
 
                                         <h5 class="mb-0 font-weight-semibold color-theme-1 mb-3">
                                             nanaimo
@@ -361,7 +361,7 @@ $this->title = 'Selamat Datang';
                                 <div class="card-body text-center pt-5 pb-5">
                                     <div>
                                         <img alt="review profile" class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail mx-auto"
-                                             src="img/profile-pic-l-11.jpg" />
+                                             src="images/profile-pic-l-11.jpg" />
                                         <h5 class="mb-0 font-weight-semibold color-theme-1 mb-3">
                                             helvetica
                                         </h5>
@@ -416,7 +416,7 @@ $this->title = 'Selamat Datang';
                         <div class="owl-carousel team-carousel">
                             <div class="card">
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="img/landing-page/team-1.jpg" alt="Card image cap" />
+                                    <img class="card-img-top" src="images/landing-page/team-1.jpg" alt="Card image cap" />
                                     <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left">FRONTEND</span>
                                 </div>
                                 <div class="card-body">
@@ -430,7 +430,7 @@ $this->title = 'Selamat Datang';
                             </div>
                             <div class="card">
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="img/landing-page/team-3.jpg" alt="Card image cap" />
+                                    <img class="card-img-top" src="images/landing-page/team-3.jpg" alt="Card image cap" />
                                     <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left">FRONTEND</span>
                                 </div>
                                 <div class="card-body">
@@ -445,7 +445,7 @@ $this->title = 'Selamat Datang';
                             </div>
                             <div class="card">
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="img/landing-page/team-2.jpg" alt="Card image cap" />
+                                    <img class="card-img-top" src="images/landing-page/team-2.jpg" alt="Card image cap" />
                                     <span class="badge badge-pill badge-secondary position-absolute badge-top-left">BACKEND</span>
                                 </div>
                                 <div class="card-body">
@@ -460,7 +460,7 @@ $this->title = 'Selamat Datang';
                             </div>
                             <div class="card">
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="img/landing-page/team-4.jpg" alt="Card image cap" />
+                                    <img class="card-img-top" src="images/landing-page/team-4.jpg" alt="Card image cap" />
                                     <span class="badge badge-pill badge-secondary position-absolute badge-top-left">BACKEND</span>
                                 </div>
                                 <div class="card-body">
@@ -475,7 +475,7 @@ $this->title = 'Selamat Datang';
                             </div>
                             <div class="card">
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="img/landing-page/team-5.jpg" alt="Card image cap" />
+                                    <img class="card-img-top" src="images/landing-page/team-5.jpg" alt="Card image cap" />
                                     <span class="badge badge-pill badge-theme-3 position-absolute badge-top-left">DESIGN</span>
                                 </div>
                                 <div class="card-body">
@@ -524,19 +524,19 @@ $this->title = 'Selamat Datang';
                     <div class="owl-container">
                         <div class="owl-carousel client-carousel">
                             <div>
-                                <img alt="client" class="img-fluid" src="img/landing-page/client-1.png" />
+                                <img alt="client" class="img-fluid" src="images/landing-page/client-1.png" />
                             </div>
                             <div>
-                                <img alt="client" class="img-fluid" src="img/landing-page/client-2.png" />
+                                <img alt="client" class="img-fluid" src="images/landing-page/client-2.png" />
                             </div>
                             <div>
-                                <img alt="client" class="img-fluid" src="img/landing-page/client-3.png" />
+                                <img alt="client" class="img-fluid" src="images/landing-page/client-3.png" />
                             </div>
                             <div>
-                                <img alt="client" class="img-fluid" src="img/landing-page/client-4.png" />
+                                <img alt="client" class="img-fluid" src="images/landing-page/client-4.png" />
                             </div>
                             <div>
-                                <img alt="client" class="img-fluid" src="img/landing-page/client-5.png" />
+                                <img alt="client" class="img-fluid" src="images/landing-page/client-5.png" />
                             </div>
                         </div>
                     </div>

@@ -7,24 +7,26 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = 'Masuk';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="form-side">
+    <a href="Dashboard.Default.html">
+        <span class="logo-single"></span>
+    </a>
+    <h6 class="mb-4"><?=Html::encode($this->title)?></h6>
+    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-    <p>Please fill out the following fields to login:</p>
 
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+    <?= $form->field($model, 'username',['options'=>['class'=>'form-group has-float-label mb-4','tag'=>'label']])->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'password',['options'=>['class'=>'form-group has-float-label mb-4','tag'=>'label']])->passwordInput()?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+    <div class="d-flex justify-content-between align-items-center">
+        <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+        <?= Html::submitButton('MASUK', ['class' => 'btn btn-primary btn-lg btn-shadow', 'name' => 'login-button']) ?>
+    </div>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
-                </div>
 
-            <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 </div>

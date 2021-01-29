@@ -5,26 +5,38 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
-$this->title = 'Resend verification email';
+$this->title = 'Kirim Ulang Verifikasi Email';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-resend-verification-email">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="section home subpage-long">
+    <div class="container">
+        <div class="row home-row mb-0">
+            <div class="col-12 col-lg-6 col-xl-4 col-md-12">
+                <div class="home-text">
+                    <div class="display-1">
+                        <?= Html::encode($this->title) ?>
 
-    <p>Please fill out your email. A verification email will be sent there.</p>
+                    </div>
+                    <p class="white mb-5">
+                        Silahkan isi email untuk pengiriman kode verifikasi.
+                    </p>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
 
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+                    <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form','options'=>['class'=>'dark-background']]); ?>
 
-            <div class="form-group">
-                <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                    <?= $form->field($model, 'email',['options'=>['class'=>'form-group has-top-label','tag'=>'label']])->textInput(['autofocus' => true]) ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('KIRIM', ['class' => 'btn btn-outline-semi-light btn-xl mt-4' ]) ?>
+                    </div>
+
+
+                    <?php ActiveForm::end(); ?>
+
+
+
+                </div>
             </div>
-
-            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
