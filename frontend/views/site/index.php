@@ -19,8 +19,7 @@ $this->title = 'Selamat Datang';
                         <p class="white mb-5">
                            Depot adalah aplikasi antar jemput galon yang memanfaatkan teknologi terkini.
                         </p>
-                        <a class="btn btn-outline-semi-light btn-xl" href="LandingPage.Auth.Register.html">REGISTER
-                            NOW</a>
+                        <a class="btn btn-outline-semi-light btn-xl" href="LandingPage.Auth.Register.html">Daftar Sekarang!</a>
                     </div>
                 </div>
                 <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
