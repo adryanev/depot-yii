@@ -51,9 +51,7 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'site/login',
-            'site/error',
-            'site/logout',
+            'site/*',
 //            'datecontrol/*',
 //            'grid/*'
 //            'admin/*',

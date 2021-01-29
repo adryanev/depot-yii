@@ -47,6 +47,11 @@ return [
             'common/config/codeception-local.php',
             'frontend/config/main-local.php',
         ],
+        'createSymlink'=>[
+//            'common/storages/public'=>'frontend/web/public',
+           'backend/web/upload'=>'common/storages/upload',
+           'frontend/web/upload'=>'common/storages/upload'
+        ]
     ],
     'Production' => [
         'path' => 'prod',
@@ -64,5 +69,9 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],
+        'createSymlink'=>[
+            'backend/web/upload'=>'common/storages/upload',
+            'frontend/web/upload'=>'common/storages/upload'
+        ]
     ],
 ];
