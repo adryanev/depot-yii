@@ -57,12 +57,12 @@ $(function () {
     });
 });
 
-function normalizeButton(id, normal = {icon: '', text: ''}) {
-    var button = $('#' + id);
-    console.log(id);
-    console.log(normal.icon);
-    button.prop('disabled', false);
-    button.html(`<i class="${normal.icon}"></i> ${normal.text}`);
-
-}
+// function normalizeButton(id, normal = {icon: '', text: ''}) {
+//     var button = $('#' + id);
+//     console.log(id);
+//     console.log(normal.icon);
+//     button.prop('disabled', false);
+//     button.html(`<i class="${normal.icon}"></i> ${normal.text}`);
+//
+// }
 

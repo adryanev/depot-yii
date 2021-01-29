@@ -21,11 +21,9 @@ $this->title = 'Masuk';
 
     <?= $form->field($model, 'password',['options'=>['class'=>'form-group has-float-label mb-4','tag'=>'label']])->passwordInput()?>
 
-
-    <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-
     <div class="d-flex justify-content-between align-items-center">
+        <?= $form->field($model, 'rememberMe')->checkbox() ?>
+
         <?= Html::submitButton('MASUK', ['class' => 'btn btn-primary btn-lg btn-shadow', 'name' => 'login-button']) ?>
     </div>
 
