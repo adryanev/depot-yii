@@ -6,9 +6,9 @@
                         class="simple-icon-arrow-up"></i></a>
             </div>
             <div class="col-12 text-center footer-content">
-                <a href="LandingPage.Home.html">
-                    <img class="footer-logo" alt="footer logo" src="<?=Yii::getAlias('@web/')?>images/logo-footer.svg" />
-                </a>
+<!--                <a href="LandingPage.Home.html">-->
+<!--                    <img class="footer-logo" alt="footer logo" src="--><?php //echo Yii::getAlias('@web/')?><!--images/logo-footer.svg" />-->
+<!--                </a>-->
             </div>
         </div>
     </div>

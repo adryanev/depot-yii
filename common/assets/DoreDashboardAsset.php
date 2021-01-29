@@ -12,7 +12,7 @@ class DoreDashboardAsset extends AssetBundle
 
     public $sourcePath = '@common/assets/dore';
     public $js = [
-        'js/dore.scripts.js',
+        'js/dore.script.js',
         'js/scripts.single.theme.js',
         'js/custom.js'
     ];

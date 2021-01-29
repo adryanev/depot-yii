@@ -41,7 +41,7 @@ use yii\bootstrap4\Html;
             <li class="nav-item mt-2">
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?=Yii::$app->user->identity->nama?>
+                        <?=Yii::$app->user->identity->username?>
                     </a>
                     <div class="dropdown-menu">
                         <?=Html::a('Profil',['profil/update'],['class'=>'dropdown-item'])?>
