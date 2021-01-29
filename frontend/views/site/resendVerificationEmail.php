@@ -5,7 +5,6 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-$this->context->layout = 'main-login';
 $this->title = 'Kirim Ulang Verifikasi Email';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

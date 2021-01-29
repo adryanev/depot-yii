@@ -52,6 +52,21 @@ class SiteController extends Controller
     }
 
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+
+        switch ($action->id){
+            case 'login':case 'signup' :case 'request-password-reset':case 'resend-verification-email':case 'reset-password': $this->layout = 'main-login';
+            break;
+        }
+        return parent::beforeAction($action);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function actions()
