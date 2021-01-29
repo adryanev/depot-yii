@@ -47,10 +47,13 @@ return [
             'common/config/codeception-local.php',
             'frontend/config/main-local.php',
         ],
-        'createSymlink'=>[
+        'createSymlink' => [
 //            'common/storages/public'=>'frontend/web/public',
-           'backend/web/upload'=>'common/storages/upload',
-           'frontend/web/upload'=>'common/storages/upload'
+            'backend/web/upload' => 'common/storages/upload',
+            'frontend/web/upload' => 'common/storages/upload',
+            'backend/web/img' => 'common/storages/img',
+            'frontend/web/img' => 'common/storages/img',
+
         ]
     ],
     'Production' => [
@@ -69,9 +72,11 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],
-        'createSymlink'=>[
-            'backend/web/upload'=>'common/storages/upload',
-            'frontend/web/upload'=>'common/storages/upload'
+        'createSymlink' => [
+            'backend/web/upload' => 'common/storages/upload',
+            'frontend/web/upload' => 'common/storages/upload',
+            'backend/web/img' => 'common/storages/img',
+            'frontend/web/img' => 'common/storages/img',
         ]
     ],
 ];
