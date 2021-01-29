@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "riwayat_status_pemesanan".
@@ -19,8 +20,16 @@ class RiwayatStatusPemesanan extends \yii\db\ActiveRecord
 {
 
     const STATUS_DITERIMA = Pemesanan::STATUS_DITERIMA;
+    const STATUS_DIPROSES = Pemesanan::STATUS_DIPROSES;
     const STATUS_DIANTAR = Pemesanan::STATUS_DIANTAR;
     const STATUS_SELESAI = Pemesanan::STATUS_SELESAI;
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -36,7 +45,7 @@ class RiwayatStatusPemesanan extends \yii\db\ActiveRecord
     {
         return [
             ['status', 'default', 'value' => self::STATUS_DITERIMA],
-            ['status', 'in', 'range' => [self::STATUS_DITERIMA, self::STATUS_DIANTAR, self::STATUS_SELESAI]],
+            ['status', 'in', 'range' => [self::STATUS_DITERIMA, self::STATUS_DIANTAR, self::STATUS_SELESAI,self::STATUS_DIPROSES]],
             [['id_pemesanan', 'created_at', 'updated_at'], 'integer'],
             [['status'], 'string', 'max' => 255],
             [['id_pemesanan'], 'exist', 'skipOnError' => true, 'targetClass' => Pemesanan::className(), 'targetAttribute' => ['id_pemesanan' => 'id']],

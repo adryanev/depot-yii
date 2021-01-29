@@ -19,6 +19,9 @@
                         <i class="iconsmind-Digital-Drawing"></i> Pengguna
                     </a>
                 </li>
+                <li <?=$controller === 'item'? 'class="active"':'' ?>>
+                    <?=\yii\bootstrap4\Html::a('<i class="iconsmind-Digital-Drawing"></i> Item',['item/index'])?>
+                </li>
                 <li <?=$controller === 'pesanan'? 'class="active"':'' ?>>
                     <a href="#applications">
                         <i class="iconsmind-Air-Balloon"></i> Pesanan
