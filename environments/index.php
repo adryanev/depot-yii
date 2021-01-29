@@ -48,11 +48,8 @@ return [
             'frontend/config/main-local.php',
         ],
         'createSymlink' => [
-//            'common/storages/public'=>'frontend/web/public',
             'backend/web/upload' => 'common/storages/upload',
             'frontend/web/upload' => 'common/storages/upload',
-            'backend/web/img' => 'common/storages/img',
-            'frontend/web/img' => 'common/storages/img',
 
         ]
     ],
@@ -75,8 +72,6 @@ return [
         'createSymlink' => [
             'backend/web/upload' => 'common/storages/upload',
             'frontend/web/upload' => 'common/storages/upload',
-            'backend/web/img' => 'common/storages/img',
-            'frontend/web/img' => 'common/storages/img',
         ]
     ],
 ];

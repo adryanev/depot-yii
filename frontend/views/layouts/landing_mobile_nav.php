@@ -19,12 +19,37 @@ use yii\bootstrap4\Html;
         <li class="nav-item">
             <div class="separator"></div>
         </li>
-        <li class="nav-item mt-2 <?= $action === 'login' ? 'active' : '' ?>">
-            <?= Html::a('MASUK', ['site/login']) ?>
-        </li>
 
-        <li class="nav-item <?= $action === 'signup' ? 'active' : '' ?>">
-            <?= Html::a('DAFTAR', ['site/signup']) ?>
-        </li>
+        <?php if (Yii::$app->user->isGuest): ?>
+            <li class="nav-item mt-2 <?= $action === 'login' ? 'active' : '' ?>">
+                <?= Html::a('MASUK', ['site/login']) ?>
+            </li>
+            <li class="nav-item pl-2 <?= $action === 'signup' ? 'active' : '' ?>">
+                <?= Html::a('DAFTAR', ['site/signup'],
+                    ['class' => 'btn btn-outline-semi-light btn-sm pr-4 pl-4']) ?>
+
+            </li>
+
+        <?php else: ?>
+
+            <li class="nav-item mr-3 <?= $action === 'pesan' ? 'active' : '' ?>">
+                <?= Html::a('PESAN', ['pesan/pesan']) ?>
+            </li>
+            <li class="nav-item mr-3 <?= $action === 'riwayat' ? 'active' : '' ?>">
+                <?= Html::a('RIWAYAT', ['pesan/riwayat']) ?>
+            </li>
+            <li class="nav-item mt-2">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?=Yii::$app->user->identity->nama?>
+                    </a>
+                    <div class="dropdown-menu">
+                        <?=Html::a('Profil',['profil/update'],['class'=>'dropdown-item'])?>
+                        <?=Html::a('Keluar',['site/logout'],['class'=>'dropdown-item','data-method'=>'POST'])?>
+                    </div>
+                </div>
+
+            </li>
+        <?php endif ?>
     </ul>
 </div>

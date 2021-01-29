@@ -25,7 +25,7 @@ class DoreAsset extends AssetBundle
         'css/vendor/slick.css',
         'css/vendor/video-js.css',
 
-        'css/dore.light.blue.min.css',
+        'css/dore.light.blue.css',
         'css/main.css'
     ];
 
