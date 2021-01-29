@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "laporan_penjualan".
@@ -18,6 +19,13 @@ use Yii;
  */
 class LaporanPenjualan extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
     /**
      * {@inheritdoc}
      */

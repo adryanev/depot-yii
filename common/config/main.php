@@ -8,6 +8,25 @@ return [
     'language' => 'id-ID',
     'sourceLanguage' => 'id-ID',
     'timezone' => 'Asia/Jakarta',
+    'container'=> [
+        'definitions'=>[
+            'kartik\file\FileInput'=>[
+                'pluginOptions'=>[
+                    'theme'=>'explorer-fas',
+                    'showUpload'=>false,
+                    'allowedFileExtensions'=> ['jpeg','jpg','gif','tiff','svg','bmp','png'],
+                    'previewFileType'=>'image',
+                    'fileActionSettings'=>[
+                        'showZoom'=>true,
+                        'showRemove'=>false,
+                        'showUpload'=>false,
+                    ]
+
+                ]
+            ]
+        ]
+
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -21,6 +40,7 @@ return [
             'thousandSeparator' => '.',
 
         ],
+
 //        'assetManager' => [
 //            'bundles' => [
 //                'yii\web\JqueryAsset' => [

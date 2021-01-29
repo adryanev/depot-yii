@@ -36,15 +36,14 @@ $this->title = 'Selamat Datang';
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div>
-                                        <i class="iconsmind-Cupcake large-icon"></i>
+                                        <i class="simple-icon-rocket large-icon"></i>
                                         <h5 class="mb-0 font-weight-semibold">
-                                            Tasteful Design
+                                            Cepat Sampai
                                         </h5>
                                     </div>
                                     <div>
                                         <p class="detail-text">
-                                            User experience principles always at the heart of
-                                            the design process.
+                                            Depot kami siap mengantar dengan cepat. dengan karyawan yang giat bekerja.
                                         </p>
                                     </div>
                                     <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
