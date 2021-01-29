@@ -3,6 +3,7 @@
 
 namespace console\controllers;
 
+use common\auth\rbac\rules\AccessOwnPesanan;
 use common\models\User;
 use Yii;
 use yii\console\Controller;
@@ -47,8 +48,6 @@ class AuthController extends Controller
             }
             $auth->addChild($su,$a);
             $auth->addChild($kar,$a);
-            $auth->addChild($cust,$a);
-
 
         }
         $karyawanPermission = ['@app-backend/pelanggan/*','@app-backend/pesanan/*','@app-backend/laporan/*'];
@@ -62,11 +61,38 @@ class AuthController extends Controller
 
             $auth->addChild($kar,$a);
         }
+        $custPermission = ['@app-frontend/site/*','@app-frontend/pemesanan/pesan', '@app-frontend/pemesanan/riwayat'];
+
+        foreach ($custPermission as $permission){
+            $this->stdout('Creating Permission: '.$permission.PHP_EOL);
+            $a = $auth->createPermission($permission);
+            $auth->add($a);
+            $this->stdout('Assign Permission.'.PHP_EOL);
+
+            $auth->addChild($cust,$a);
+        }
+
+
+        $access_own_pesanan = new AccessOwnPesanan();
+        $auth->add($access_own_pesanan);
+
+        $izinCustomer = $auth->createPermission('lihatPemesanan');
+        $izinCustomer->description = 'Melihat pemesanan galon';
+        $izinCustomer->ruleName = $access_own_pesanan->name;
+        $auth->add($izinCustomer);
+
+        $lihatPesanana = $auth->createPermission('@app-frontend/pemesanan/lihat');
+        $auth->add($lihatPesanana);
+
+        $auth->addChild($izinCustomer,$lihatPesanana);
+
+
     }
 
     public function actionDown()
     {
         $auth = Yii::$app->authManager;
+        $this->stdout('Cleaning all RBAC Entries'.PHP_EOL);
         $auth->removeAll();
     }
 }
