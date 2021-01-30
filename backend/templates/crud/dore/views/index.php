@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="card">
             <div class="card-body">
-                <?= "<?php" ?>$this->beginBlock('action-button') ?>
+                <?= "<?php " ?>$this->beginBlock('action-button') ?>
                 <div class="float-sm-right">
                     <?= "<?=" ?> Html::button(<?= $generator->generateString("<i class=simple-icon-plus></i> Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['value' => Url::to(['create']), 'title' => <?= $generator->generateString("Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, 'class' => 'showModalButton btn btn-success']); ?>
                 </div>

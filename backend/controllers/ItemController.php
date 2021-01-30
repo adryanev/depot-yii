@@ -2,16 +2,18 @@
 
 namespace backend\controllers;
 
+use backend\models\ImageUploadForm;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\Item;
 use backend\models\ItemSearch;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
-
+use yii\web\UploadedFile;
 
 /**
  * ItemController implements the CRUD actions for Item model.
@@ -69,26 +71,34 @@ class ItemController extends Controller
     public function actionCreate()
     {
         $model = new Item();
+        $uploadForm = new ImageUploadForm();
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post())) {
-
+        if ($model->load(Yii::$app->request->post()) && $uploadForm->load(Yii::$app->request->post())) {
+            $data = UploadedFile::getInstance($uploadForm, 'gambar');
+            if ($data !== null) {
+                $uploadForm->gambar = $data;
+                if ($file = $uploadForm->upload(Yii::getAlias('@common/storages/upload'))) {
+                    $model->gambar = $file;
+                }
+            }
 
             $model->save();
-            Yii::$app->session->setFlash('success','Berhasil menambahkan Item.');
+            Yii::$app->session->setFlash('success', 'Berhasil menambahkan Item.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model'=>$model,'uploadForm'=>$uploadForm]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'uploadForm'=>$uploadForm
         ]);
     }
 
@@ -102,19 +112,40 @@ class ItemController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $uploadForm = new ImageUploadForm();
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah Item.');
+        if ($model->load(Yii::$app->request->post()) && $uploadForm->load(Yii::$app->request->post())) {
+            if($data = UploadedFile::getInstance($uploadForm,'gambar')){
+                //hapus gambar yg lama
+                $old = $model->gambar;
+                $path = Yii::getAlias('@common/storages/upload');
+                FileHelper::unlink($path.'/'.$old);
+
+                //upload gambar yg baru
+                $uploadForm->gambar = $data;
+                if($file = $uploadForm->upload($path)){
+                    $model->gambar = $file;
+                }
+
+
+            }
+            $model->save();
+
+
+            Yii::$app->session->setFlash('success', 'Berhasil mengubah Item.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'uploadForm'=>$uploadForm,
+
         ]);
     }
 
@@ -129,10 +160,56 @@ class ItemController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus Item.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Item.');
 
         return $this->redirect(['index']);
     }
+
+//    public function actionUpload()
+//    {
+//        Yii::$app->response->format = Response::FORMAT_JSON;
+//
+//        $preview = $config = $errors = [];
+//        $model = new ImageUploadForm();
+//        $post = Yii::$app->request->post();
+//        $path = Yii::getAlias('@common/storages/upload');
+//
+//        $data = UploadedFile::getInstance($model, 'gambar');
+//        if ($data === null) {
+//            return [];
+//        }
+//
+//        $model->gambar=$data;
+//        $id = [];
+//        if ($file = $model->upload($path)) {
+//            $url = (Yii::getAlias('@web/upload/' . $file));
+//            $preview[] = $url;
+//            $config[] = [
+//                'caption'=>$file,
+//                'size'=>$data->size,
+//                'downloadUrl'=>$url,
+//                'deleteUrl'=>Yii::$app->urlManager->createAbsoluteUrl(['item/delete-gambar'])
+//            ];
+//        } else {
+//            $errors[] = $file;
+//        }
+//
+//        $out = ['initialPreview' => $preview, 'initialPreviewConfig' => $config, 'initialPreviewAsData' => true];
+//        if (!empty($errors)) {
+//            $img = count($errors) === 1 ? 'file "' . $errors[0] . '" ' : 'files: "' . implode('", "', $errors) . '" ';
+//            $out['error'] = 'Gawat, kami tidak bisa menguggah gambar ' . $img . 'sekarang. Silahkan coba sesaat lagi.';
+//        }
+//        return $out;
+//    }
+//
+//    public function actionDeleteGambar()
+//    {
+//        Yii::$app->response->format = Response::FORMAT_JSON;
+//        $data = Yii::$app->request->post();
+//        $file = $data['key'];
+//        $path = Yii::getAlias('@common/storages/upload');
+//        return FileHelper::unlink("$path/$file");
+//    }
 
     /**
      * Finds the Item model based on its primary key value.

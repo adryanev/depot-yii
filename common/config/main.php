@@ -11,6 +11,7 @@ return [
     'container'=> [
         'definitions'=>[
             'kartik\file\FileInput'=>[
+                'options' => ['multiple' => false],
                 'pluginOptions'=>[
                     'theme'=>'explorer-fas',
                     'showUpload'=>false,

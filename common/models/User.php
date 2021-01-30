@@ -26,6 +26,7 @@ use yii\web\IdentityInterface;
  * @property string|null $foto
  *
  * @property Pemesanan[] $pemesanans
+ * @property AuthAssignment $role
  *
  *
  * @property string $password write-only password
@@ -234,5 +235,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function getRole(){
+        return $this->hasOne(AuthAssignment::class,['user_id'=>'id']);
     }
 }

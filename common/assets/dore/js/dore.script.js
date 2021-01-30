@@ -606,8 +606,10 @@ $.dore = function(element, options) {
     });
 
     function getActiveMainMenuLink() {
-      var dataLink = $(".main-menu ul li.active a").attr("href");
-      return dataLink.replace("#", "");
+      // var dataLink = $(".main-menu ul li.active a").attr("href");
+      // console.log(dataLink);
+      // return dataLink !== null? dataLink.replace("#", ""):'';
+      return '';
     }
 
     function isClassIncludedApp(className) {
@@ -625,7 +627,8 @@ $.dore = function(element, options) {
         return;
       }
 
-      var link = dataLink.replace("#", "");
+      // var link = dataLink.replace("#", "");
+      var link = '';
       if ($(".sub-menu ul[data-link='" + link + "']").length == 0) {
         $("#app-container").removeClass("sub-show-temporary");
 

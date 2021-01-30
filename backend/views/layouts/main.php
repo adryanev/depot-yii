@@ -22,6 +22,7 @@ use yii\bootstrap4\Modal;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <?php $this->head() ?>
 </head>
 <body id="app-container" class="menu-default show-spinner">

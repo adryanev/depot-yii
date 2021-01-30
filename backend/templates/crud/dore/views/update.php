@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('Ubah') ?>;
         <div class="card">
             <div class="card-body">
                 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
-                    <h5> <?= "<?= " ?>Html::encode($this->title) ?></h5>
+                    <h5> <?= "<?= " ?>Form <?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?> ?></h5>
 
                     <?= "<?= " ?>$this->render('_form', [
                     'model' => $model,
