@@ -3,10 +3,10 @@
 use yii\bootstrap4\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Item */
+/* @var $model common\models\User */
 
-$this->title = 'Tambah Item';
-$this->params['breadcrumbs'][] = ['label' => 'Item', 'url' => ['index']];
+$this->title = 'Tambah User';
+$this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -14,12 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="card">
             <div class="card-body">
-                <div class="item-create">
-                    <h5> Form Item</h5>
+                <div class="user-create">
+                    <h5> <?= Form user ?></h5>
 
                     <?= $this->render('_form', [
-                        'model' => $model,
-                        'uploadForm' => $uploadForm,
+                    'model' => $model,
                     ]) ?>
 
                 </div>

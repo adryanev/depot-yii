@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h5> <?= "<?= " ?>Html::encode($this->title) ?></h5>
                 <?= "<?php" ?>$this->beginBlock('action-button') ?>
                 <div class="float-sm-right">
-                    <?="<?= "?>Html::a('<i class="simple-icon-pencil"> Edit</i>',['update', <?= $urlParams ?>],['class'=>'btn btn-lg btn-outline-warning '])?>
-                    <?="<?= "?>Html::a('<i class="simple-icon-trash"> Hapus </i>',['delete', <?= $urlParams ?>],['class'=>'btn btn-lg btn-outline-danger', 'data' => [
+                    <?="<?= "?>Html::a('<i class="simple-icon-pencil"> Edit</i>',['update', <?= $urlParams ?>],['class'=>'btn btn-lg btn-warning '])?>
+                    <?="<?= "?>Html::a('<i class="simple-icon-trash"> Hapus </i>',['delete', <?= $urlParams ?>],['class'=>'btn btn-lg btn-danger', 'data' => [
                     'confirm' => <?= $generator->generateString('Apakah anda yakin untuk menghapus item ini?') ?>,
                     'method' => 'post',
                     ],])?>
