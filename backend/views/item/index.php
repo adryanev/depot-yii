@@ -12,7 +12,7 @@ $this->title = 'Item';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-12">
 
         <div class="card">
             <div class="card-body">
@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item-index">
 
 
+                    <?php \yii\widgets\Pjax::begin()?>
                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                     <?= GridView::widget([
@@ -55,6 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'common\widgets\ActionColumn', 'header' => 'Aksi'],
                         ],
                     ]); ?>
+
+                    <?php \yii\widgets\Pjax::end()?>
 
 
                 </div>

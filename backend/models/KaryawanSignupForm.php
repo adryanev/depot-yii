@@ -9,7 +9,7 @@ use frontend\models\SignupForm;
 use Yii;
 use yii\helpers\ArrayHelper;
 
-class UserSignupForm extends SignupForm
+class KaryawanSignupForm extends SignupForm
 {
     public $nama;
     public $alamat;
@@ -40,6 +40,9 @@ class UserSignupForm extends SignupForm
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         $user->status = User::STATUS_ACTIVE;
+        $user->nama = $this->nama;
+        $user->telepon = $this->telepon;
+        $user->alamat = $this->alamat;
         $user->save(false);
 
         $auth = Yii::$app->authManager;

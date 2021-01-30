@@ -7,6 +7,10 @@ use InvalidArgumentException;
 use Yii;
 use yii\db\Exception;
 
+/**
+ * Class UpdateAccountForm
+ * @package common\models
+ */
 class UpdateAccountForm extends \yii\base\Model
 {
     public $username;
@@ -28,13 +32,13 @@ class UpdateAccountForm extends \yii\base\Model
         ];
     }
 
-    public function __construct($id, $config = [])
+    public function __construct($user, $config = [])
     {
 
-        if (empty($id)) {
+        if (empty($user)) {
             throw new InvalidArgumentException('Id tidak boleh kosong');
         }
-        $this->_user = User::findOne($id);
+        $this->_user = $user;
         if (!$this->_user) {
             throw new InvalidArgumentException('User tidak Ditemukan');
         }
@@ -73,23 +77,8 @@ class UpdateAccountForm extends \yii\base\Model
         ]);
 
 
-        $transaction = \Yii::$app->db->beginTransaction();
 
-
-        try {
-            if (!$user->save(false)) {
-                $transaction->rollBack();
-                return false;
-            }
-
-            $transaction->commit();
-        } catch (Exception $e) {
-            $transaction->rollBack();
-            return false;
-        }
-
-
-        return $user;
+        return  $user->save(false) ? $user: null;
     }
 
     public function getUser()

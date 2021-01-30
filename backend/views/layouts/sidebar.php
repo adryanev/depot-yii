@@ -6,7 +6,6 @@
 
 use yii\bootstrap4\Html;
 $roles = Yii::$app->user->identity->role->item_name;
-var_dump($roles);
 ?>
 <div class="sidebar">
     <div class="main-menu">

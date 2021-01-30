@@ -50,7 +50,7 @@ class AuthController extends Controller
             $auth->addChild($kar,$a);
 
         }
-        $karyawanPermission = ['@app-backend/pelanggan/*','@app-backend/pesanan/*','@app-backend/laporan/*'];
+        $karyawanPermission = ['@app-backend/site/*','@app-backend/pelanggan/*','@app-backend/pesanan/*','@app-backend/laporan/*','@app-backend/item/*','@app-backend/notifikasi/*'];
         foreach ($karyawanPermission as $permission){
             $this->stdout('Creating Permission: '.$permission.PHP_EOL);
             $a = $auth->createPermission($permission);

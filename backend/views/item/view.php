@@ -17,7 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card">
             <div class="card-body">
                 <h5> <?= Html::encode($this->title) ?></h5>
+
                 <?php $this->beginBlock('action-button') ?>
+
                 <div class="float-sm-right">
                     <?= Html::a('<i class="simple-icon-pencil"> Edit</i>', ['update', 'id' => $model->id],
                         ['class' => 'btn btn-lg btn-warning ']) ?>

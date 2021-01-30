@@ -34,7 +34,7 @@ use yii\bootstrap4\Modal;
 <main class="default-transition">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 list">
+            <div class="col-12">
                 <h1><?=Html::encode($this->title)?></h1>
                 <?php if (isset($this->blocks['action-button'])): ?>
                     <?= $this->blocks['action-button'] ?>

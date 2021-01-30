@@ -32,9 +32,9 @@ class UpdatePasswordForm extends Model
     public function rules()
     {
         return [
-            [['oldPassword','newPassword','repeatPassword'],'required'],
-            ['repeatPassword','compare','compareAttribute' => 'newPassword','message' => 'Password tidak sama.'],
-            ['oldPassword','findPassword','skipOnEmpty'=>false],
+            [['oldPassword', 'newPassword', 'repeatPassword'], 'required'],
+            ['repeatPassword', 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Password tidak sama.'],
+            ['oldPassword', 'findPassword', 'skipOnEmpty' => false],
 
         ];
     }
@@ -51,14 +51,15 @@ class UpdatePasswordForm extends Model
         }
         return true;
     }
-    public function __construct($id, $config = [])
+
+    public function __construct($user, $config = [])
     {
 
-        if (empty($id)) {
+        if (empty($user)) {
             throw new InvalidArgumentException('Pengguna tidak ditemukan');
         }
 
-        $this->_user = User::findOne($id);
+        $this->_user = $user;
         if (!$this->_user) {
             throw new InvalidArgumentException('Pengguna yang dicari tidak ada');
         }
@@ -69,9 +70,9 @@ class UpdatePasswordForm extends Model
     public function updatePassword()
     {
 
-            $user = $this->_user;
-            $user->setPassword($this->newPassword);
+        $this->_user->setPassword($this->newPassword);
 
-            return $user->save()? $user: null;
+
+        return $this->_user->save(false) ? $this->_user : null;
     }
 }
