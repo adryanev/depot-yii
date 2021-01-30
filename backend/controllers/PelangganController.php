@@ -157,7 +157,7 @@ class PelangganController extends Controller
                         }
                     }
                     $db->commit();
-                    Yii::$app->session->setFlash('success', 'Berhasil menambahkan Pelanggan.');
+                    Yii::$app->session->setFlash('success', 'Berhasil Mengubah Pelanggan.');
 
                     return $this->redirect(['view', 'id' => $user->id]);
                 }

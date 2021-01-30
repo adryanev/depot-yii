@@ -163,7 +163,7 @@ class KaryawanController extends Controller
                         }
                     }
                     $db->commit();
-                    Yii::$app->session->setFlash('success', 'Berhasil menambahkan Karyawan.');
+                    Yii::$app->session->setFlash('success', 'Berhasil Mengubah Karyawan.');
 
                     return $this->redirect(['view', 'id' => $user->id]);
                 }

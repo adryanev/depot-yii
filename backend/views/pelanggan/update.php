@@ -6,7 +6,7 @@
 /* @var $modelPassword common\models\UpdatePasswordForm */
 
 $this->title = 'Ubah Pelanggan: ' . $model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Pelanggan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->user->nama, 'url' => ['view', 'id' => $model->user->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
