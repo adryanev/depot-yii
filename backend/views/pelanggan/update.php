@@ -5,7 +5,7 @@
 /* @var $modelUpload backend\models\ImageUploadForm */
 /* @var $modelPassword common\models\UpdatePasswordForm */
 
-$this->title = 'Ubah Karyawan: ' . $model->nama;
+$this->title = 'Ubah Pelanggan: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->user->nama, 'url' => ['view', 'id' => $model->user->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
@@ -16,10 +16,10 @@ $this->params['breadcrumbs'][] = 'Ubah';
         <div class="card mb-4">
             <div class="card-body">
                 <div class="user-update">
-                    <h5> Form Update Karyawan </h5>
+                    <h5> Form Update Pelanggan </h5>
 
-                    <?= $this->render('_update_form', [
-                    'model' => $model,
+                    <?= $this->render('//karyawan/_update_form', [
+                        'model' => $model,
                         'modelUpload'=>$modelUpload,
                     ]) ?>
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
                 <div class="password-update">
                     <h5> Ubah Kata Sandi </h5>
 
-                    <?= $this->render('_update_password_form', [
+                    <?= $this->render('//karyawan/_update_password_form', [
                         'modelPassword'=>$modelPassword,
                     ]) ?>
 
