@@ -36,17 +36,16 @@ $this->title = 'Selamat Datang';
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div>
-                                        <i class="simple-icon-rocket large-icon"></i>
+                                        <i class="iconsmind-Money large-icon"></i>
                                         <h5 class="mb-0 font-weight-semibold">
-                                            Cepat Sampai
+                                            Murah
                                         </h5>
                                     </div>
                                     <div>
                                         <p class="detail-text">
-                                            Depot kami siap mengantar dengan cepat. dengan karyawan yang giat bekerja.
+                                            Harga pengisisan dan antar jemput murah.
                                         </p>
                                     </div>
-                                    <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
                                 </div>
                             </div>
 
@@ -55,16 +54,14 @@ $this->title = 'Selamat Datang';
                                     <div>
                                         <i class="iconsmind-Line-Chart2 large-icon"></i>
                                         <h5 class="mb-0 font-weight-semibold">
-                                            Superfine Charts
+                                            Cepat
                                         </h5>
                                     </div>
                                     <div>
                                         <p class="detail-text">
-                                            Charts that looks good with color, opacity, border
-                                            and shadow.
+                                            Pemesanan Langsung di Proses.
                                         </p>
                                     </div>
-                                    <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
                                 </div>
                             </div>
 
@@ -73,55 +70,39 @@ $this->title = 'Selamat Datang';
                                     <div>
                                         <i class="iconsmind-Three-ArrowFork large-icon"></i>
                                         <h5 class="mb-0 font-weight-semibold">
-                                            Two Panels Menu
+                                            Terjamin
                                         </h5>
                                     </div>
                                     <div>
                                         <p class="detail-text">
-                                            A menu that looks good and does the job well.
+                                            Keamanan dan kebersihan air anda terjamin.
                                         </p>
                                     </div>
-                                    <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <div>
-                                        <i class="iconsmind-Funny-Bicycle large-icon"></i>
-                                        <h5 class="mb-0 font-weight-semibold">
-                                            Layouts for the Job
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <p class="detail-text">
-                                            Lots of different layouts for different jobs.
-                                        </p>
-                                    </div>
-                                    <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
                                 </div>
                             </div>
 
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div>
-                                        <i class="iconsmind-Full-View large-icon"></i>
+                                        <i class="iconsmind-Environmental large-icon"></i>
                                         <h5 class="mb-0 font-weight-semibold">
-                                            Extra Responsive
+                                            Sehat
                                         </h5>
                                     </div>
                                     <div>
                                         <p class="detail-text">
-                                            Better experiences for smaller and larger screens
-                                            by adding Xxl and Xxs.
+                                            Kandungan mineral yang seimbang untuk tubuh anda.
                                         </p>
                                     </div>
-                                    <a class="btn btn-link font-weight-semibold" href="LandingPage.Features.html">VIEW</a>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <a class="btn btn-circle btn-outline-semi-light hero-circle-button scrollTo" href="#features" id="homeCircleButton"><i
