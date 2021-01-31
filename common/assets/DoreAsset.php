@@ -37,6 +37,7 @@ class DoreAsset extends AssetBundle
         'js/vendor/video.js',
         'js/vendor/videojs-youtube.min.js',
         'js/vendor/jquery.barrating.min.js',
+        'https://js.pusher.com/7.0/pusher.min.js'
 
     ];
 

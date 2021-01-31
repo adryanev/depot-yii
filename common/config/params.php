@@ -1,4 +1,6 @@
 <?php
+$notification_entity = require 'notification_entity_type.php';
+$config = parse_ini_file(__DIR__ . '/../../configuration.ini') ;
 return [
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',
@@ -23,4 +25,11 @@ return [
             ]
         ],
     ],
+    'notification.entity' => $notification_entity,
+    'pusher' => [
+        'app_id' => $config['app_id'],
+        'key' => $config['key'],
+        'secret' => $config['secret'],
+        'cluster' => $config['cluster'],
+    ]
 ];

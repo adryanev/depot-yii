@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii2mod\collection\Collection;
 
 /**
  * Site controller
@@ -89,4 +90,17 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+//    public function actionPusher(){
+//        $data['message'] = 'hello world';
+//        return Yii::$app->pusher->push('my-channel', 'my-event',$data);
+//
+//    }
+
+//    public function actionParams(){
+//        $entity = Yii::$app->params['notification.entity'];
+//        $data = Collection::make($entity);
+//        var_dump(Yii::t('notification','pemesanan.pesan',['username'=>'Hello']));
+//        exit();
+//    }
 }

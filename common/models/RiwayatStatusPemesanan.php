@@ -58,11 +58,11 @@ class RiwayatStatusPemesanan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_pemesanan' => 'Id Pemesanan',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'id_pemesanan' => Yii::t('app', 'Id Pemesanan'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 

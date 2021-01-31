@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\ActionColumn;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -44,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'harga:currency',
                             [
                                 'attribute' => 'gambar',
-                                'format' => ['image', ['width' => '50%']],
+                                'format' => ['image', ['width' => '100','height'=>'100']],
                                 'value' => function ($model,$url,  $key) {
                                     return Yii::getAlias('@web/upload/' . $model->gambar);
                                 }
@@ -53,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'created_at',
                             //'updated_at',
 
-                            ['class' => 'common\widgets\ActionColumn', 'header' => 'Aksi'],
+                            ['class' => ActionColumn::class, 'header' => 'Aksi'],
                         ],
                     ]); ?>
 

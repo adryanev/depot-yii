@@ -29,10 +29,10 @@ class AdminLoginForm extends LoginForm
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            $roles = Yii::$app->authManager->getRolesByUser($user->id);
-            $allow = ArrayHelper::getValue($roles, 'superadmin') || ArrayHelper::getValue($roles, 'karyawan');
+            $roles = $user->role->item_name;
+            $allow = $roles === 'superadmin'||$roles === 'karyawan';
             if (!$user || !$allow) {
-                $this->addError($attribute, 'Anda tidak memiliki akses');
+                $this->addError($attribute, Yii::t('error','Anda tidak memiliki Hak Akses'));
             }
         }
     }
