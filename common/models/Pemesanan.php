@@ -18,22 +18,33 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $created_at
  * @property int|null $updated_at
  *
+ * @property string $statusPemesanan
  * @property User $user
  * @property RiwayatStatusPemesanan[] $riwayatStatusPemesanans
  * @property DetailPemesanan[] $details
  */
 class Pemesanan extends \yii\db\ActiveRecord
 {
-    const STATUS_DITERIMA = 'diterima';
-    const STATUS_DIANTAR = 'diantar';
-    const STATUS_SELESAI = 'selesai';
-    const STATUS_DIPROSES = 'diproses';
+    const STATUS_DITERIMA = 0;
+    const STATUS_DIANTAR = 2;
+    const STATUS_SELESAI = 3;
+    const STATUS_DIPROSES = 1;
 
     public function behaviors()
     {
         return [
             TimestampBehavior::class
         ];
+    }
+
+    public function getStatusPemesanan(){
+        $status = [
+            self::STATUS_DITERIMA=>'Pesanan diterima',
+            self::STATUS_DIPROSES=>'Sedang di proses',
+            self::STATUS_DIANTAR=>'Dalam perjalanan',
+            self::STATUS_SELESAI =>'Pesanan Selesai dan Sampai kepada pembeli.'
+        ];
+        return $status[$this->status];
     }
     /**
      * {@inheritdoc}
@@ -70,7 +81,7 @@ class Pemesanan extends \yii\db\ActiveRecord
             'alamat' => Yii::t('app', 'Alamat'),
             'telepon' => Yii::t('app', 'Telepon'),
             'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'created_at' => Yii::t('app', 'Tanggal Pemesanan'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }

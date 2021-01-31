@@ -93,7 +93,13 @@ class PemesananController extends Controller
 
     public function actionView($id){
 
-        return $this->render('view');
+        $pemesanan = Pemesanan::findOne($id);
+        return $this->render('view',['pemesanan'=>$pemesanan]);
+    }
+
+    public function actionRiwayat(){
+        $dataProvider = new ActiveDataProvider(['query'=>Pemesanan::find()->where(['id_user'=>Yii::$app->user->identity])->orderBy('id DESC')]);
+        return $this->render('riwayat',compact('dataProvider'));
     }
 
 //    public function actionConfirm(){

@@ -16,10 +16,10 @@ $this->title = 'Pemesanan Anda'
             <div class="col-12 col-xl-5 col-lg-12 col-md-12">
                 <div class="home-text">
                     <div class="display-1">
-                        Pemesanan: <?= $pemesanan->id ?>
+                       Riwayat Pemesanan
                     </div>
                     <p class="white">
-                        Status: <?=$pemesanan->statusPemesanan?>
+                        Berikut Riwayat Pemesanan Anda
                     </p>
                 </div>
 
@@ -34,30 +34,22 @@ $this->title = 'Pemesanan Anda'
     <div class="container" id="content">
         <div class="row">
             <div class="col-12">
-                <h2 class="mb-3">Pemesanan Anda</h2>
+                <h2 class="mb-3">Riwayat Pemesanan Anda</h2>
 
-                <?= DetailView::widget([
-                    'model' => $pemesanan,
-                    'attributes' => [
-                        'id',
-                        'user.nama',
+
+                <?=\yii\grid\GridView::widget([
+                        'dataProvider'=>$dataProvider,
+                    'summary'=>false,
+                    'columns'=>[
+                            ['class'=>\yii\grid\SerialColumn::class,'header'=>'No'],
+                            'id',
                         'alamat',
                         'telepon',
                         'statusPemesanan',
-                        'created_at:datetime'
+                        'created_at:datetime',
+                        ['class'=>\common\widgets\ActionColumn::class,
 
-                    ]
-                ]) ?>
-
-                <h3 class="mt-4 mb-e">Detail Pemesanan</h3>
-                <?=\yii\grid\GridView::widget([
-                        'dataProvider'=>new \yii\data\ActiveDataProvider(['query'=>$pemesanan->getDetails()]),
-                    'summary'=>false,
-                    'columns'=>[
-                        ['class'=>\yii\grid\SerialColumn::class,'header'=>'No'],
-                        'item.nama',
-                        'qty',
-                        'total',
+                            'template'=>'{view}']
                     ]
                 ])?>
 

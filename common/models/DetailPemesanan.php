@@ -14,6 +14,7 @@ use Yii;
  * @property int|null $total
  *
  * @property Pemesanan $pemesanan
+ * @property Item $item
  */
 class DetailPemesanan extends \yii\db\ActiveRecord
 {
@@ -58,5 +59,12 @@ class DetailPemesanan extends \yii\db\ActiveRecord
     public function getPemesanan()
     {
         return $this->hasOne(Pemesanan::className(), ['id' => 'id_pemesanan']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItem(){
+        return $this->hasOne(Item::className(),['id'=>'id_item']);
     }
 }
