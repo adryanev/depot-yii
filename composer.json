@@ -24,7 +24,10 @@
         "dominus77/yii2-sweetalert2-widget": "~1.3",
         "yii2mod/collection": "*",
         "iiifx-production/yii2-autocomplete-helper": "^2.0",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "pusher/pusher-php-server": "^4.1",
+        "yii2mod/yii2-cart": "*",
+        "omnilight/yii2-shopping-cart": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

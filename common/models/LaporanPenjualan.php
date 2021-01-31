@@ -52,14 +52,14 @@ class LaporanPenjualan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'tanggal_mulai' => 'Tanggal Mulai',
-            'tanggal_selesai' => 'Tanggal Selesai',
-            'nama_berkas' => 'Nama Berkas',
-            'isi_berkas' => 'Isi Berkas',
-            'bentuk_berkas' => 'Bentuk Berkas',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'tanggal_mulai' => Yii::t('app', 'Tanggal Mulai'),
+            'tanggal_selesai' => Yii::t('app', 'Tanggal Selesai'),
+            'nama_berkas' => Yii::t('app', 'Nama Berkas'),
+            'isi_berkas' => Yii::t('app', 'Isi Berkas'),
+            'bentuk_berkas' => Yii::t('app', 'Bentuk Berkas'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }

@@ -23,6 +23,7 @@ use yii\bootstrap4\Modal;
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
     <?php $this->head() ?>
 </head>
 <body id="app-container" class="menu-default show-spinner">
@@ -34,7 +35,7 @@ use yii\bootstrap4\Modal;
 <main class="default-transition">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 list">
+            <div class="col-12">
                 <h1><?=Html::encode($this->title)?></h1>
                 <?php if (isset($this->blocks['action-button'])): ?>
                     <?= $this->blocks['action-button'] ?>
@@ -64,6 +65,26 @@ use yii\bootstrap4\Modal;
 <?php Modal::end() ?>
 
 <?php $this->endBody() ?>
+<script>
+    var config = <?=\yii\helpers\Json::encode(Yii::$app->params['pusher']) ?>;
+    var user = <?=\yii\helpers\Json::encode(Yii::$app->user->identity->username)?>;
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher(config.key, {
+        cluster: config.cluster
+    });
+
+    if(user!== null){
+        var channel = pusher.subscribe(user);
+        channel.bind('pemesanan', function(data) {
+            alert(JSON.stringify(data));
+        });
+    }
+
+</script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

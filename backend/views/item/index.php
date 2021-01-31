@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\ActionColumn;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -12,7 +13,7 @@ $this->title = 'Item';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-12">
 
         <div class="card">
             <div class="card-body">
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item-index">
 
 
+                    <?php \yii\widgets\Pjax::begin()?>
                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                     <?= GridView::widget([
@@ -43,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'harga:currency',
                             [
                                 'attribute' => 'gambar',
-                                'format' => ['image', ['width' => '50%']],
+                                'format' => ['image', ['width' => '100','height'=>'100']],
                                 'value' => function ($model,$url,  $key) {
                                     return Yii::getAlias('@web/upload/' . $model->gambar);
                                 }
@@ -52,9 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'created_at',
                             //'updated_at',
 
-                            ['class' => 'common\widgets\ActionColumn', 'header' => 'Aksi'],
+                            ['class' => ActionColumn::class, 'header' => 'Aksi'],
                         ],
                     ]); ?>
+
+                    <?php \yii\widgets\Pjax::end()?>
 
 
                 </div>

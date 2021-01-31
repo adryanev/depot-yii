@@ -49,7 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'nama',
 //                            'alamat',
                             'telepon',
-                            'foto',
+                            [
+                                    'attribute'=>'foto',
+                                    'format'=>['image',['width'=>'80','height'=>'80']],
+                                     'value'=>function($model){
+                                            return Yii::getAlias('@web/upload/'.$model->foto);
+                                        },
+                                'filter'=>false
+                            ],
                             //'status',
 //                            'created_at:datetime',
                             //'updated_at',

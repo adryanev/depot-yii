@@ -3,18 +3,24 @@
 namespace backend\controllers;
 
 use backend\models\ImageUploadForm;
-use backend\models\UserSignupForm;
+use backend\models\KaryawanSignupForm;
+use common\models\UpdateAccountForm;
+use common\models\UpdatePasswordForm;
+use Faker\Provider\Image;
+use frontend\models\SignupForm;
 use Yii;
+use yii\base\InvalidArgumentException;
+use yii\db\Exception;
 use yii\filters\AccessControl;
 use common\models\User;
 use backend\models\KaryawanSearch;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
 use yii\web\UploadedFile;
-
 
 /**
  * KaryawanController implements the CRUD actions for User model.
@@ -71,36 +77,44 @@ class KaryawanController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserSignupForm();
+        $model = new KaryawanSignupForm();
         $modelUpload = new ImageUploadForm();
 
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post() && $modelUpload->load(Yii::$app->request->post()))) {
-
-            if ($user = $model->signup()) {
-                if($upload = UploadedFile::getInstance($modelUpload,'gambar')){
-                    $modelUpload->gambar = $upload;
-                    if($file = $modelUpload->upload(Yii::getAlias('@common/storages/upload'))){
-                        $user->foto = $file;
-                        $user->save();
+        if ($model->load(Yii::$app->request->post())&& $modelUpload->load(Yii::$app->request->post())) {
+            $db = Yii::$app->db->beginTransaction();
+            try{
+                if ($user = $model->signup()) {
+                    if ($upload = UploadedFile::getInstance($modelUpload, 'gambar')) {
+                        $modelUpload->gambar = $upload;
+                        if ($file = $modelUpload->upload(Yii::getAlias('@common/storages/upload'))) {
+                            $user->foto = $file;
+                            $user->save();
+                        }
                     }
-                }
-                Yii::$app->session->setFlash('success','Berhasil menambahkan User.');
+                    $db->commit();
+                    Yii::$app->session->setFlash('success', 'Berhasil menambahkan Karyawan.');
 
+                    return $this->redirect(['view', 'id' => $user->id]);
+                }
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+             catch (Exception $exception){
+                $db->rollBack();
+                throw $exception;
+             }
         }
 
-        elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model,'modelUpload'=>$modelUpload]);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model'=>$model,'modelUpload'=>$modelUpload]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelUpload'=>$modelUpload
         ]);
     }
 
@@ -113,20 +127,60 @@ class KaryawanController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $user = $this->findModel($id);
+        $model = new UpdateAccountForm($user);
+        $modelPassword= new UpdatePasswordForm($user);
+        $modelUpload = new ImageUploadForm();
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah User.');
+        if($modelPassword->load(Yii::$app->request->post())){
+            if($modelPassword->updatePassword()){
+                Yii::$app->session->setFlash('success','Berhasil mengganti kata sandi');
+                return $this->redirect(['view','id'=>$user->id]);
+            }
+            throw new InvalidArgumentException('Gagal mengganti kata sandi');
 
-            return $this->redirect(['view', 'id' => $model->id]);
+
+        }
+        if ($model->load(Yii::$app->request->post()) && $modelUpload->load(Yii::$app->request->post())) {
+
+            $db = Yii::$app->db->beginTransaction();
+            try{
+                if ($user = $model->updateUser()) {
+                    if ($upload = UploadedFile::getInstance($modelUpload, 'gambar')) {
+                        //hapus gambar yg lama
+                        $old = $user->foto;
+                        $path = Yii::getAlias('@common/storages/upload');
+                        FileHelper::unlink($path.'/'.$old);
+
+                        $modelUpload->gambar = $upload;
+                        if ($file = $modelUpload->upload(Yii::getAlias('@common/storages/upload'))) {
+                            $user->foto = $file;
+                            $user->save();
+                        }
+                    }
+                    $db->commit();
+                    Yii::$app->session->setFlash('success', 'Berhasil Mengubah Karyawan.');
+
+                    return $this->redirect(['view', 'id' => $user->id]);
+                }
+            }
+            catch (Exception $exception){
+                $db->rollBack();
+                throw $exception;
+            }
+            Yii::$app->session->setFlash('danger', 'Gagal mengubah Karyawan.');
+
+            return $this->redirect(['view', 'id' => $user->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'modelPassword'=>$modelPassword,
+            'modelUpload'=>$modelUpload
         ]);
     }
 
@@ -141,7 +195,7 @@ class KaryawanController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus User.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Karyawan.');
 
         return $this->redirect(['index']);
     }

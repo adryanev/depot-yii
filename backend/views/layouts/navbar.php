@@ -65,7 +65,7 @@
             </button>
 
             <div class="dropdown-menu dropdown-menu-right mt-3">
-                <a class="dropdown-item" href="#">Account</a>
+                <?=\yii\bootstrap4\Html::a('Akun',['akun/index'],['class'=>'dropdown-item'])?>
                 <?=\yii\bootstrap4\Html::a('Keluar',['site/logout'],['class'=>'dropdown-item','data-method'=>'POST'])?>
             </div>
         </div>

@@ -4,6 +4,9 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii2mod\cart\models\CartItemInterface;
+use yz\shoppingcart\CartPositionInterface;
+use yz\shoppingcart\CartPositionTrait;
 
 /**
  * This is the model class for table "item".
@@ -16,8 +19,9 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $created_at
  * @property int|null $updated_at
  */
-class Item extends \yii\db\ActiveRecord
+class Item extends \yii\db\ActiveRecord implements CartPositionInterface
 {
+    use CartPositionTrait;
 
 
     public function behaviors()
@@ -54,13 +58,25 @@ class Item extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'nama' => 'Nama',
-            'harga' => 'Harga',
-            'gambar' => 'Gambar',
-            'deskripsi' => 'Deskripsi',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'nama' => Yii::t('app', 'Nama'),
+            'harga' => Yii::t('app', 'Harga'),
+            'gambar' => Yii::t('app', 'Gambar'),
+            'deskripsi' => Yii::t('app', 'Deskripsi'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public function getPrice(): int
+    {
+        return  $this->harga;
+    }
+
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

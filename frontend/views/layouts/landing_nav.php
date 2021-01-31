@@ -31,10 +31,10 @@ use yii\bootstrap4\NavBar;
                 <?php else: ?>
 
                     <li class="nav-item mr-3 <?= $action === 'pesan' ? 'active' : '' ?>">
-                        <?= Html::a('PESAN', ['pesan/pesan']) ?>
+                        <?= Html::a('PESAN', ['pemesanan/pesan']) ?>
                     </li>
                     <li class="nav-item mr-3 <?= $action === 'riwayat' ? 'active' : '' ?>">
-                        <?= Html::a('RIWAYAT', ['pesan/riwayat']) ?>
+                        <?= Html::a('RIWAYAT', ['pemesanan/riwayat']) ?>
                     </li>
                     <li class="nav-item pl-2">
                         <div class="dropdown">

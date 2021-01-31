@@ -5,7 +5,8 @@ use yii\bootstrap4\ActiveForm;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\User */
+/* @var $model \frontend\models\SignupForm */
+/* @var $modelUpload \backend\models\ImageUploadForm */
 /* @var $form yii\bootstrap4\ActiveForm;
 */
 ?>
@@ -17,7 +18,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
@@ -27,10 +28,10 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'telepon')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($modelUpload, 'gambar')->widget(\kartik\file\FileInput::className(),[]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
+        <?= Html::submitButton('<i class=\'simple-icon-check\'></i> Simpan', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
