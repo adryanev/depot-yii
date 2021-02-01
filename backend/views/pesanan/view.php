@@ -99,11 +99,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="scroll">
 
                     <?php foreach ($riwayat as $value): ?>
-                        <div class="pl-3 pt-2 pr-2 pb-2 table-bordered">
-                            <a href="#">
+                        <div class="mt-3 pl-3 pt-2 pr-2 pb-2 table-bordered">
                                 <p class="list-item-heading"><?= $value->statusPemesanan ?></p>
                                 <div class="text-primary text-small font-weight-medium"><?= Yii::$app->formatter->asDatetime($value->created_at) ?></div>
-                            </a>
                         </div>
                     <?php endforeach; ?>
 

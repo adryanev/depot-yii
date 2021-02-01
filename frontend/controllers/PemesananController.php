@@ -95,7 +95,8 @@ class PemesananController extends Controller
     public function actionView($id){
 
         $pemesanan = Pemesanan::findOne($id);
-        return $this->render('view',['pemesanan'=>$pemesanan]);
+        $riwayat = $pemesanan->getRiwayatStatusPemesanans()->orderBy('id DESC')->all();
+        return $this->render('view',['pemesanan'=>$pemesanan,'riwayat'=>$riwayat]);
     }
 
     public function actionRiwayat(){
