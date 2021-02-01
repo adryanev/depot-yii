@@ -10,9 +10,10 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int|null $id_pemesanan
- * @property string|null $status
+ * @property int|null $status
  * @property int|null $created_at
  * @property int|null $updated_at
+ * @property string $statusPemesanan
  *
  * @property Pemesanan $pemesanan
  */
@@ -23,6 +24,16 @@ class RiwayatStatusPemesanan extends \yii\db\ActiveRecord
     const STATUS_DIPROSES = Pemesanan::STATUS_DIPROSES;
     const STATUS_DIANTAR = Pemesanan::STATUS_DIANTAR;
     const STATUS_SELESAI = Pemesanan::STATUS_SELESAI;
+
+    public function getStatusPemesanan(){
+        $status = [
+            self::STATUS_DITERIMA=>'Pesanan diterima',
+            self::STATUS_DIPROSES=>'Sedang di proses',
+            self::STATUS_DIANTAR=>'Dalam perjalanan',
+            self::STATUS_SELESAI =>'Pesanan Selesai dan Sampai kepada pembeli.'
+        ];
+        return $status[$this->status];
+    }
 
     public function behaviors()
     {
@@ -46,8 +57,7 @@ class RiwayatStatusPemesanan extends \yii\db\ActiveRecord
         return [
             ['status', 'default', 'value' => self::STATUS_DITERIMA],
             ['status', 'in', 'range' => [self::STATUS_DITERIMA, self::STATUS_DIANTAR, self::STATUS_SELESAI,self::STATUS_DIPROSES]],
-            [['id_pemesanan', 'created_at', 'updated_at'], 'integer'],
-            [['status'], 'string', 'max' => 255],
+            [['id_pemesanan','status', 'created_at', 'updated_at'], 'integer'],
             [['id_pemesanan'], 'exist', 'skipOnError' => true, 'targetClass' => Pemesanan::className(), 'targetAttribute' => ['id_pemesanan' => 'id']],
         ];
     }

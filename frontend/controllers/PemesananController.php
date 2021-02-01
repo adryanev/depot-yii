@@ -68,6 +68,7 @@ class PemesananController extends Controller
 
             try{
                 $pemesanan->status = Pemesanan::STATUS_DITERIMA;
+                $pemesanan->jumlah = $cart->cost;
                 $pemesanan->save(false);
                 foreach ($cart->getPositions() as $item) {
                     $detail = new DetailPemesanan();

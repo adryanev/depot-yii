@@ -27,7 +27,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "pusher/pusher-php-server": "^4.1",
         "yii2mod/yii2-cart": "*",
-        "omnilight/yii2-shopping-cart": "*"
+        "omnilight/yii2-shopping-cart": "*",
+        "kartik-v/yii2-widget-select2": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -122,7 +122,7 @@ class NotificationHandler extends Component
             $prepared['entity_type'] = 1;
         } else {
             $prepared['actor'] = Yii::$app->user->identity;
-            $prepared['notifier'] = $data['entity']->user;
+            $prepared['notifier'] = [$data['entity']->user];
             $prepared['entity'] = $data['entity'];
             switch ($data['entity']->status) {
                 case Pemesanan::STATUS_DIPROSES:
