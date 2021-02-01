@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\DetailPemesanan;
 use common\models\Item;
 use common\models\Pemesanan;
+use common\models\RiwayatStatusPemesanan;
 use Yii;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
@@ -68,6 +69,7 @@ class PemesananController extends Controller
 
             try{
                 $pemesanan->status = Pemesanan::STATUS_DITERIMA;
+                $pemesanan->jumlah = $cart->cost;
                 $pemesanan->save(false);
                 foreach ($cart->getPositions() as $item) {
                     $detail = new DetailPemesanan();
@@ -77,6 +79,10 @@ class PemesananController extends Controller
                     $detail->total = $item->cost;
                     $detail->save(false);
                 }
+                $riwayat = new RiwayatStatusPemesanan();
+                $riwayat->id_pemesanan = $pemesanan->id;
+                $riwayat->status = $pemesanan->status;
+                $riwayat->save(false);
 
                 $db->commit();
                 $cart->removeAll();
@@ -94,7 +100,8 @@ class PemesananController extends Controller
     public function actionView($id){
 
         $pemesanan = Pemesanan::findOne($id);
-        return $this->render('view',['pemesanan'=>$pemesanan]);
+        $riwayat = $pemesanan->getRiwayatStatusPemesanans()->orderBy('id DESC')->all();
+        return $this->render('view',['pemesanan'=>$pemesanan,'riwayat'=>$riwayat]);
     }
 
     public function actionRiwayat(){

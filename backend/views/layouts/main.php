@@ -79,7 +79,13 @@ use yii\bootstrap4\Modal;
     if(user!== null){
         var channel = pusher.subscribe(user);
         channel.bind('pemesanan', function(data) {
-            alert(JSON.stringify(data));
+            var notifyConfig = {
+                icon:data.icon,
+                title:data.title,
+                message:data.message,
+                url:'<?=\yii\helpers\Url::to(['pesanan/view'],true)?>'+'?id='+data.entity,
+            };
+            createNotification(notifyConfig);
         });
     }
 

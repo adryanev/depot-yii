@@ -26,8 +26,13 @@
         "iiifx-production/yii2-autocomplete-helper": "^2.0",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "pusher/pusher-php-server": "^4.1",
-        "yii2mod/yii2-cart": "*",
-        "omnilight/yii2-shopping-cart": "*"
+        "omnilight/yii2-shopping-cart": "*",
+        "kartik-v/yii2-widget-select2": "dev-master",
+        "npm-asset/bootstrap-notify": "^3.0",
+        "npm-asset/animate.css": "^4.0",
+        "phpoffice/phpspreadsheet": "^1.16",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
