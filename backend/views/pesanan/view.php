@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"> <?= Html::encode($this->title) ?></h4>
+                <?php if(!($model->status === Pemesanan::STATUS_SELESAI)):?>
                 <?php $this->beginBlock('action-button') ?>
                 <div class="float-sm-right">
                     <?= Html::a(
@@ -56,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div>
                 <?php $this->endBlock() ?>
+                <?php endif; ?>
 
                 <div class="pemesanan-view">
 

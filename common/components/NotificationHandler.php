@@ -46,7 +46,8 @@ class NotificationHandler extends Component
         foreach ($notifications as $notification) {
             Yii::$app->pusher->push($notification->notifier->username, 'pemesanan', [
                 'icon' => Url::to('@web/upload/'.$change->actor->foto,true),
-                'message'=>$messages,
+                'message'=>$messages[1],
+                'title'=>$messages[0],
                 'actor'=>$change->actor->nama,
                 'entity'=>$object->entity_id
             ]);
@@ -98,10 +99,11 @@ class NotificationHandler extends Component
     {
         $entity_type = Yii::$app->params['notification.entity'];
         $item = $entity_type[$object->entity_type];
+        $title = $item['name'];
 
         $messages = Yii::t('notification',$item['messageProp']);
 
-        return $messages;
+        return [$title,$messages];
     }
 
     /**

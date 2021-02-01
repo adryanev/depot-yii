@@ -44,6 +44,8 @@ class DoreAsset extends AssetBundle
     public $depends = [
         YiiAsset::class,
         BootstrapAsset::class,
-        BootstrapPluginAsset::class
+        BootstrapPluginAsset::class,
+        AnimateAsset::class,
+        BootstrapNotifyAsset::class
     ];
 }
