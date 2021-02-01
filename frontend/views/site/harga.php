@@ -25,7 +25,7 @@ use yii\bootstrap4\Html;
            id="homeCircleButton"><i
                     class="simple-icon-arrow-down"></i></a>
     </div>
-    <div class="row">
+    <div class="row" id="content">
         <div class="col-12 p-0">
             <div class="owl-container">
                 <div class="owl-carousel home-carousel">
@@ -54,8 +54,9 @@ use yii\bootstrap4\Html;
 
                                 </ul>
                                 <div>
-                                    <a href="#" class="btn btn-link btn-empty btn-lg">Pesan Sekarang <i
-                                                class="simple-icon-arrow-right"></i></a>
+                                    <?= Html::a('Pesan Sekarang <i class="simple-icon-arrow-right"></i>', ['site/login'],['class'=>'btn btn-link','btn-empty btn-lg']) ?>
+
+
                                 </div>
                             </div>
                         </div>
@@ -81,7 +82,8 @@ use yii\bootstrap4\Html;
 
                 <div class="col-12 offset-0 col-lg-6 offset-lg-3 newsletter-input-container">
                     <div class="text-center mb-3">
-                        <button class="btn btn-secondary btn-xl" type="button">Pesan Sekarang</button>
+                        <?= Html::a('<button class="btn btn-secondary btn-xl" type="button">Pesan Sekarang</button>', ['site/login']) ?>
+
                     </div>
                 </div>
             </div>

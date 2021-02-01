@@ -19,7 +19,11 @@ $this->title = 'Selamat Datang';
                         <p class="white mb-5">
                            Depot adalah aplikasi antar jemput galon yang memanfaatkan teknologi terkini.
                         </p>
+                        <?php if(!Yii::$app->user->isGuest): ?>
+                        <?=\yii\bootstrap4\Html::a('Pesan Sekarang!',['/pemesanan/pesan'],['class'=>'btn btn-outline-semi-light btn-xl'])?>
+                        <?php else: ?>
                         <?=\yii\bootstrap4\Html::a('Daftar Sekarang!',['site/signup'],['class'=>'btn btn-outline-semi-light btn-xl'])?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">

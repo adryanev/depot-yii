@@ -10,10 +10,13 @@ use yii\bootstrap4\NavBar;
             <?= Html::a(' <span class="white"></span>
                 <span class="dark"></span>', Yii::$app->homeUrl, ['class' => 'navbar-logo pull-left']) ?>
             <ul class="navbar-nav d-none d-lg-flex flex-row">
-                <li class="nav-item <?= $action === 'fitur' ? 'active' : '' ?>">
-                    <?= Html::a('FITUR', ['site/fitur']) ?>
-                </li>
+<!--                <li class="nav-item --><?//= $action === 'fitur' ? 'active' : '' ?><!--">-->
+<!--                    --><?//= Html::a('FITUR', ['site/fitur']) ?>
+<!--                </li>-->
 
+                <li class="nav-item <?= $action === 'index' ? 'active' : '' ?>">
+                    <?= Html::a('HOME', ['site/index']) ?>
+                </li>
                 <li class="nav-item <?= $action === 'harga' ? 'active' : '' ?>">
                     <?= Html::a('HARGA', ['site/harga']) ?>
                 </li>
@@ -42,7 +45,7 @@ use yii\bootstrap4\NavBar;
                                 <?=Yii::$app->user->identity->username?>
                             </a>
                             <div class="dropdown-menu">
-                                <?=Html::a('Profil',['profil/update'],['class'=>'dropdown-item'])?>
+                                <?=Html::a('Profil',['akun/index'],['class'=>'dropdown-item'])?>
                                 <?=Html::a('Keluar',['site/logout'],['class'=>'dropdown-item','data-method'=>'POST'])?>
                             </div>
                         </div>
