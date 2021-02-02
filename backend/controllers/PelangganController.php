@@ -91,7 +91,7 @@ class PelangganController extends Controller
                         $modelUpload->gambar = $upload;
                         if ($file = $modelUpload->upload(Yii::getAlias('@common/storages/upload'))) {
                             $user->foto = $file;
-                            $user->save();
+                            $user->save(false);
                         }
                     }
                     $db->commit();
@@ -106,13 +106,13 @@ class PelangganController extends Controller
         }
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('_form', ['model' => $model, 'modelUpload' => $modelUpload]);
+            return $this->renderAjax('//karyawan/_form', ['model' => $model, 'modelUpload' => $modelUpload]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-            'modelUpload' => $modelUpload
-        ]);
+//        var_dump($model);
+//        var_dump($modelUpload);
+//        exit();
+
     }
 
     /**
