@@ -83,8 +83,8 @@ return [
             'site/login',
             'site/error',
             'site/logout',
-            'admin/*',
-            'debug/*',
+//            'admin/*',
+//            'debug/*',
             'datecontrol/*'
 //            'sertifikat/*',
 //            'sertifikat-perguruan-tinggi/*',

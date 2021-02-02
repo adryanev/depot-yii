@@ -56,7 +56,7 @@ return [
 //            'datecontrol/*',
 //            'grid/*'
 //            'admin/*',
-            'debug/*',
+//            'debug/*',
 //            'sertifikat/*',
 //            'sertifikat-perguruan-tinggi/*',
 //            'sertifikat/*',

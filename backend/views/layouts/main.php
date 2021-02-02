@@ -69,9 +69,6 @@ use yii\bootstrap4\Modal;
     var config = <?=\yii\helpers\Json::encode(Yii::$app->params['pusher']) ?>;
     var user = <?=\yii\helpers\Json::encode(Yii::$app->user->identity->username)?>;
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
     var pusher = new Pusher(config.key, {
         cluster: config.cluster
     });
