@@ -1,11 +1,15 @@
 <?php
+
 namespace backend\controllers;
 
+use backend\models\AdminLoginForm;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii2mod\collection\Collection;
 
 /**
  * Site controller
@@ -18,20 +22,6 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -49,6 +39,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'main-error'
             ],
         ];
     }
@@ -74,9 +65,9 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'blank';
+        $this->layout = 'main-login';
 
-        $model = new LoginForm();
+        $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -99,4 +90,17 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+//    public function actionPusher(){
+//        $data['message'] = 'hello world';
+//        return Yii::$app->pusher->push('my-channel', 'my-event',$data);
+//
+//    }
+
+//    public function actionParams(){
+//        $entity = Yii::$app->params['notification.entity'];
+//        $data = Collection::make($entity);
+//        var_dump(Yii::t('notification','pemesanan.pesan',['username'=>'Hello']));
+//        exit();
+//    }
 }

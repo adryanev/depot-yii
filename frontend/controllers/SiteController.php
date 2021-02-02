@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Item;
+use common\models\User;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -26,22 +28,6 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -49,6 +35,21 @@ class SiteController extends Controller
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+
+        switch ($action->id){
+            case 'login':case 'signup' :case 'request-password-reset':case 'resend-verification-email':case 'reset-password': $this->layout = 'main-login';
+            break;
+        }
+        return parent::beforeAction($action);
     }
 
     /**
@@ -75,7 +76,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $karyawan = User::find()->innerJoinWith('role')->where(['item_name'=>'karyawan'])->all();
+        return $this->render('index',['karyawan'=>$karyawan]);
+    }
+    public function actionHarga(){
+        $item = Item::find()->all();
+        return $this->render('harga',['item'=>$item]);
     }
 
     /**
@@ -155,7 +161,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar, silahkan cek email anda');
             return $this->goHome();
         }
 
@@ -174,11 +180,11 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Cek email anda untuk lebih lanjut.');
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+                Yii::$app->session->setFlash('error', 'Maaf, kami tidak bisa mengirimkan email kepada anda.');
             }
         }
 
@@ -203,7 +209,7 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('success', 'Password baru tersimpan.');
 
             return $this->goHome();
         }
@@ -229,12 +235,12 @@ class SiteController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+                Yii::$app->session->setFlash('success', 'Email anda sudah terkonfirmasi!');
                 return $this->goHome();
             }
         }
 
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('error', 'Maaf, kami tidak bisa memverifikasi anda dengan token yang diberikan.');
         return $this->goHome();
     }
 
@@ -248,10 +254,10 @@ class SiteController extends Controller
         $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Silahkan cek email anda untuk lebih lanjut');
                 return $this->goHome();
             }
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to resend verification email for the provided email address.');
+            Yii::$app->session->setFlash('error', 'Maaf, kami tidak bisa mengirimkan verifikasi ke email anda.');
         }
 
         return $this->render('resendVerificationEmail', [

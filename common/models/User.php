@@ -18,8 +18,17 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
+ * @property string|null $nama
+ * @property string|null $alamat
+ * @property string|null $telepon
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string|null $foto
+ *
+ * @property Pemesanan[] $pemesanans
+ * @property AuthAssignment $role
+ *
+ *
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -55,7 +64,24 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'nama', 'alamat', 'telepon', 'verification_token', 'foto'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
         ];
+    }
+
+    /**
+     * Gets query for [[Pemesanans]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPemesanans()
+    {
+        return $this->hasMany(Pemesanan::className(), ['id_user' => 'id']);
     }
 
     /**
@@ -133,6 +159,7 @@ class User extends ActiveRecord implements IdentityInterface
         return $timestamp + $expire >= time();
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -208,5 +235,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function getRole(){
+        return $this->hasOne(AuthAssignment::class,['user_id'=>'id']);
     }
 }

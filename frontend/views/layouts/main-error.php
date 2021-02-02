@@ -30,7 +30,17 @@ $action = $this->context->action->id;
 <div class="fixed-background"></div>
 <main>
     <div class="container">
-        <?= $content ?>
+        <div class="row h-100">
+            <div class="col-12 col-md-10 mx-auto my-auto">
+                <div class="card auth-card">
+                    <div class="position-relative image-side ">
+                        <p class=" text-white h2">ANTAR JEMPUT GALON?</p>
+                        <p class="text-white mb-0">DEPOT-IN AJA!</p>
+                    </div>
+                    <?=$content?>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 

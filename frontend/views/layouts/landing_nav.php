@@ -10,22 +10,48 @@ use yii\bootstrap4\NavBar;
             <?= Html::a(' <span class="white"></span>
                 <span class="dark"></span>', Yii::$app->homeUrl, ['class' => 'navbar-logo pull-left']) ?>
             <ul class="navbar-nav d-none d-lg-flex flex-row">
-                <li class="nav-item <?= $action === 'fitur' ? 'active' : '' ?>">
-                    <?= Html::a('FITUR', ['site/fitur']) ?>
-                </li>
+<!--                <li class="nav-item --><?//= $action === 'fitur' ? 'active' : '' ?><!--">-->
+<!--                    --><?//= Html::a('FITUR', ['site/fitur']) ?>
+<!--                </li>-->
 
+                <li class="nav-item <?= $action === 'index' ? 'active' : '' ?>">
+                    <?= Html::a('HOME', ['site/index']) ?>
+                </li>
                 <li class="nav-item <?= $action === 'harga' ? 'active' : '' ?>">
                     <?= Html::a('HARGA', ['site/harga']) ?>
                 </li>
 
-                <li class="nav-item mr-3 <?= $action === 'login' ? 'active' : '' ?>">
-                    <?= Html::a('MASUK', ['site/login']) ?>
-                </li>
-                <li class="nav-item pl-2 <?= $action === 'signup' ? 'active' : '' ?>">
-                    <?= Html::a('DAFTAR', ['site/signup'],
-                        ['class' => 'btn btn-outline-semi-light btn-sm pr-4 pl-4']) ?>
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <li class="nav-item mr-3 <?= $action === 'login' ? 'active' : '' ?>">
+                        <?= Html::a('MASUK', ['site/login']) ?>
+                    </li>
+                    <li class="nav-item pl-2 <?= $action === 'signup' ? 'active' : '' ?>">
+                        <?= Html::a('DAFTAR', ['site/signup'],
+                            ['class' => 'btn btn-outline-semi-light btn-sm pr-4 pl-4']) ?>
 
-                </li>
+                    </li>
+
+                <?php else: ?>
+
+                    <li class="nav-item mr-3 <?= $action === 'pesan' ? 'active' : '' ?>">
+                        <?= Html::a('PESAN', ['pemesanan/pesan']) ?>
+                    </li>
+                    <li class="nav-item mr-3 <?= $action === 'riwayat' ? 'active' : '' ?>">
+                        <?= Html::a('RIWAYAT', ['pemesanan/riwayat']) ?>
+                    </li>
+                    <li class="nav-item pl-2">
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle btn btn-outline-semi-light btn-sm pr-4 pl-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?=Yii::$app->user->identity->username?>
+                            </a>
+                            <div class="dropdown-menu">
+                                <?=Html::a('Profil',['akun/index'],['class'=>'dropdown-item'])?>
+                                <?=Html::a('Keluar',['site/logout'],['class'=>'dropdown-item','data-method'=>'POST'])?>
+                            </div>
+                        </div>
+
+                    </li>
+                <?php endif ?>
             </ul>
 
 

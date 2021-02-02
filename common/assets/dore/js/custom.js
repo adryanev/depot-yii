@@ -57,12 +57,37 @@ $(function () {
     });
 });
 
-function normalizeButton(id, normal = {icon: '', text: ''}) {
-    var button = $('#' + id);
-    console.log(id);
-    console.log(normal.icon);
-    button.prop('disabled', false);
-    button.html(`<i class="${normal.icon}"></i> ${normal.text}`);
-
+function createNotification(config,settings){
+    $.notify(config,{
+        // settings
+        position: null,
+        type: "success",
+        allow_dismiss: true,
+        showProgressbar: false,
+        placement: {
+            from: "top",
+            align: "right"
+        },
+        offset: 20,
+        spacing: 10,
+        z_index: 1031,
+        delay: 5000,
+        timer: 1000,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        },
+        icon_type: 'class',
+        template: '<div data-notify="container" class="col-sm-11 col-md-3 alert alert-{0} semi-rounded" role="alert">' +
+            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            '<span data-notify="icon"></span> ' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<div class="progress" data-notify="progressbar">' +
+            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            '</div>' +
+            '<a href="{3}" data-notify="url"></a>' +
+            '</div>'
+    });
 }
 

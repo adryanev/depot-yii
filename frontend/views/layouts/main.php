@@ -40,10 +40,35 @@ $action = $this->context->action->id;
 
         </div>
     </div>
-
-
-
 <?php $this->endBody() ?>
+<script>
+    <?php if(!Yii::$app->user->isGuest) : ?>
+    var config = <?=\yii\helpers\Json::encode(Yii::$app->params['pusher']) ?>;
+    var user = <?=\yii\helpers\Json::encode(Yii::$app->user->identity->username)?>;
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher(config.key, {
+        cluster: config.cluster
+    });
+
+    if(user!== null){
+        var channel = pusher.subscribe(user);
+        channel.bind('pemesanan', function(data) {
+            var notifyConfig = {
+                icon:data.icon,
+                title:data.title,
+                message:data.message,
+                url:'<?=\yii\helpers\Url::to(['pemesanan/view'],true)?>'+'?id='+data.entity,
+            };
+            createNotification(notifyConfig);
+        });
+    }
+    <?php endif; ?>
+
+</script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

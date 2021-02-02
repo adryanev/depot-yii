@@ -6,8 +6,7 @@
 
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
-$this->context->layout = 'main-login';
-$this->title = 'Login';
+$this->title = 'Masuk';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <div class="section home subpage-long">
@@ -16,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-12 col-lg-6 col-xl-4 col-md-12">
                     <div class="home-text">
                         <div class="display-1">
-                            Masuk
+                            <?=Html::encode($this->title)?>
                         </div>
                         <p class="white mb-5">
                             Silahkan masuk menggunakan akun anda.<br>
