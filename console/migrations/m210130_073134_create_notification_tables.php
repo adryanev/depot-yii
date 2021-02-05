@@ -43,7 +43,7 @@ class m210130_073134_create_notification_tables extends Migration
             '{{%notification_object}}',
             'id'
         );
-        $this->addForeignKey('fk-notification-user', '{{%notification}}', 'notifier_id', '{{%user}}', 'id');
+        $this->addForeignKey('fk-notification-user', '{{%notification}}', 'notifier_id', '{{%user}}', 'id','cascade','cascade');
 
         $this->createTable('{{%notification_change}}', [
             'id' => $this->primaryKey(),
@@ -60,7 +60,7 @@ class m210130_073134_create_notification_tables extends Migration
             '{{%notification_object}}',
             'id'
         );
-        $this->addForeignKey('fk-notification_change-user', '{{%notification_change}}', 'actor_id', '{{%user}}', 'id');
+        $this->addForeignKey('fk-notification_change-user', '{{%notification_change}}', 'actor_id', '{{%user}}', 'id','cascade','cascade');
     }
 
     /**
